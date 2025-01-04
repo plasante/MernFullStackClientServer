@@ -1,4 +1,5 @@
 import React from 'react';
+import { Layout, Image, Typography} from "antd";
 
 const App = () => {
   return (
