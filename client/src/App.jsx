@@ -1,11 +1,18 @@
 import React from 'react';
-import { Layout, Image, Typography} from "antd";
+import { Layout, Image, Typography } from 'antd';
+import Logo from './images/Instaverse.png';
+
+const { Header } = Layout;
+const { Title } = Typography;
 
 const App = () => {
   return (
-    <div>
-      <h1>App</h1>
-    </div>
+    <Layout>
+      <Header>
+        <Image width={45} preview={false} src={Logo} />
+        <Title style={{ color: 'black' }}>Instaverse</Title>
+      </Header>
+    </Layout>
   );
 };
 
