@@ -9,7 +9,7 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
 
-const MONGO_URI = "mongodb+srv://plasante:Mjg9YXou5QgkhKA8@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = "mongodb+srv://plasante:----@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
 
