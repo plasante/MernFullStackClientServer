@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import storyRoutes from './routes/stories.js';
 
 const app = express();
 
@@ -9,7 +10,10 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors());
 
-const MONGO_URI = "mongodb+srv://plasante:----@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// We reach this route localhost:5001/stories
+app.use('/stories', storyRoutes);
+
+const MONGO_URI = "mongodb+srv://plasante:Mjg9YXou5QgkhKA8@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
 
