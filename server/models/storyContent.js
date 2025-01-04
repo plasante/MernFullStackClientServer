@@ -2,20 +2,16 @@ import mongoose from 'mongoose';
 
 const storySchema = new mongoose.Schema({
   caption: {
-    type: String,
-    required: true
+    type: String
   },
   username: {
-    type: String,
-    required: true
+    type: String
   },
   userId: {
-    type: String,
-    required: true
+    type: String
   },
   image: {
-    type: String,
-    required: true
+    type: String
   },
   tags: String,
   likes: {
