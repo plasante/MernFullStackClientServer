@@ -7,5 +7,13 @@ export const getStories = () => async (dispatch) => {
   } catch(error) {
     console.log(error.message);
   }
+}
 
+export const createStory = (story) => async (dispatch) => {
+  try {
+    const { data } = await api.createStory();
+    dispatch({ type: "CREATE_STORY", payload: data });
+  } catch(error) {
+    console.log(error.message);
+  }
 }
