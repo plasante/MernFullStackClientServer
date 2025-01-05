@@ -3,18 +3,20 @@ import { Layout, Image, Typography } from 'antd';
 import Logo from './images/Instaverse.png';
 import {Footer} from "antd/es/layout/layout";
 import Home from "./components/Home";
+import styles from './styles';
+
 const { Header } = Layout;
 const { Title } = Typography;
 
 const App = () => {
   return (
-    <Layout>
-      <Header>
-        <Image width={90} preview={false} src={Logo} />
-        <Title style={{ color: 'black' }}>Instaverse</Title>
+    <Layout style={styles.layout}>
+      <Header style={styles.header}>
+        <Image style={styles.image} width={90} preview={false} src={Logo} />
+        <Title style={styles.title}>Instaverse</Title>
       </Header>
       <Home/>
-      <Footer>2025 Instaverse</Footer>
+      <Footer style={styles.footer}>2025 Instaverse</Footer>
     </Layout>
   );
 };
