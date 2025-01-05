@@ -13,6 +13,7 @@ const StoryForm = () => {
   const [form] = Form.useForm();
 
   const onSubmit = (formValues) => {
+    console.log('formValues =', formValues);
     dispatch(createStory(formValues));
   }
 
