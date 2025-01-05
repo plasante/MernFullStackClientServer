@@ -1,7 +1,7 @@
 const storyReducer = (state = [], action) => {
   switch (action.type) {
     case "FETCH_ALL_STORIES":
-      return state;
+      return action.payload;
     case "CREATE_STORY":
       return state;
     default:
