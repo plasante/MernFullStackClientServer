@@ -12,18 +12,11 @@ export const getStories = () => async (dispatch) => {
 
 export const createStory = (story) => async (dispatch) => {
   try {
-    const { data } = await api.createStory(story);
+    // We make a post request to the backend server
+    const {data} = await api.createStory(story);
+    // We then update the state.stories of the store
     dispatch({ type: "CREATE_STORY", payload: data });
-  } catch(error) {
+  } catch (error) {
     console.log(error.message);
   }
-}
-
-// export const createStory = (storyData) => async (dispatch) => {
-//   try {
-//     const res = await axios.post('http://localhost:5001/stories/', storyData);
-//     dispatch({ type: 'CREATE_STORY', payload: res.data });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+};
