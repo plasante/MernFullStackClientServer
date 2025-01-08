@@ -8,7 +8,7 @@ import styles from './styles';
 const {Meta} = Card;
 const {Link, Paragraph, Text} = Typography;
 
-const Story = ({story}) => {
+const Story = ({story, setSelectedId}) => {
   const [expand, setExpand] = useState(true);
 
   return (
@@ -29,7 +29,9 @@ const Story = ({story}) => {
         </div>,
         /* Put your edit action here */
         <Tooltip placement={'top'} title={'Edit'}>
-          <EditOutlined onClick={() => {  }}/>
+          <EditOutlined onClick={() => {
+            setSelectedId(story._id)
+          }}/>
         </Tooltip>,
         /* Put your delete action here */
         <Tooltip placement={'top'} title={'Delete'} color={'red'}>
