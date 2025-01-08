@@ -17,7 +17,7 @@ app.use(cors());
 // We reach this route localhost:5001/stories
 app.use('/stories', storyRoutes);
 
-const MONGO_URI = "mongodb+srv://plasante:Mjg9YXou5QgkhKA8@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = "mongodb+srv://plasante:---@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 
 
