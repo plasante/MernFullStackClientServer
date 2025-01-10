@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Row, Col, Spin} from "antd";
 import Story from "../Story";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getStories} from "../../actions/stories";
 
 const StoryList = ({ setSelectedId }) => {
 
   const stories = useSelector(state => state.stories);
+  const dispatch = useDispatch();
 
-  console.log('stories from tne store: ', stories);
+  useEffect(() => {
+    console.log("Mounting StoryList");
+    dispatch(getStories());
+  }, [dispatch]);
 
   return !stories.length ?
     <div>
