@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import storyRoutes from './routes/stories.js';
+import { config } from 'dotenv'; // changed this line
+
+config();
 
 const app = express();
 
@@ -17,7 +20,7 @@ app.use(cors());
 // We reach this route localhost:5001/stories
 app.use('/stories', storyRoutes);
 
-const MONGO_URI = "mongodb+srv://plasante:---@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = `mongodb+srv://plasante:${process.env.DB_PASSWORD}@cluster0.enctu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
 
