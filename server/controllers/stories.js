@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Story from "../models/storyContent.js";
+import res from "express/lib/response.js";
 
 const getStories = async (req, res) => {
   const story = await Story.find();
@@ -50,4 +51,27 @@ const deleteStory = async (req, res) => {
   res.json("Story deleted successfully.");
 }
 
-export { getStories, createStory, updateStory, deleteStory };
+const likeStory = async (req, res) => {
+  // Get the id from the request params http://localhost:5001/123
+  const id = req.params.id;
+
+  // Check if the id exists in the DB
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send("The story with id does not exist!");
+  }
+
+  const story = await Story.findById(id);
+
+  if (!story) {
+    return res.status(404).send("No story found with this id!");
+  }
+
+  const updatedStory = await Story.findByIdAndUpdate(id, { likes: story.likes + 1 }, {new: true});
+
+  if (!updatedStory)
+    return res.status(500).send('There was a problem updating the story.');
+
+  res.status(200).json(updatedStory);
+}
+
+export { getStories, createStory, updateStory, deleteStory, likeStory };

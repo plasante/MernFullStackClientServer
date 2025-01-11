@@ -1,5 +1,4 @@
 import * as api from "../api";
-//import axios from "axios";
 
 export const getStories = () => async (dispatch) => {
   try {
@@ -34,6 +33,15 @@ export const deleteStory = (id) => async (dispatch) => {
   try {
     await api.deleteStory(id);
     dispatch({ type: "DELETE_STORY", payload: id });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const likeStory = (id) => async (dispatch) => {
+  try {
+    const {data} = await api.likeStory(id);
+    dispatch({ type: "LIKE_STORY", payload: data });
   } catch (error) {
     console.log(error.message);
   }
