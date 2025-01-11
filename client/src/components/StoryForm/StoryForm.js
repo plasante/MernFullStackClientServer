@@ -16,10 +16,13 @@ const StoryForm = ({ selectedId, setSelectedId }) => {
 
   const [form] = Form.useForm();
 
-  const onSubmit = (formValues) => {
-    selectedId ? dispatch(updateStory(selectedId, formValues)) :
-    // We pass formValues in createStory action
-    dispatch(createStory(formValues));
+  const onSubmit = async (formValues) => {
+    if (selectedId === null) {
+      await dispatch(createStory(formValues));
+    } else {
+      await dispatch(updateStory(selectedId, formValues));
+    }
+    form.resetFields();
   }
 
   useEffect(() => {

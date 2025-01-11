@@ -24,9 +24,9 @@ const createStory = async (req, res) => {
 }
 
 const updateStory = async (req, res) => {
-  const {id: _id} = req.params.id;
+  const _id = req.params.id;
   const story = req.body;
-
+console.log('id = ', _id)
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("This id does not exist!");
   }
