@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {Card, Tooltip, Typography, Image} from "antd";
 import {EditOutlined, DeleteTwoTone, HeartTwoTone} from "@ant-design/icons";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { deleteStory} from "../../actions/stories";
 
 import styles from './styles';
 
@@ -9,6 +11,8 @@ const {Meta} = Card;
 const {Link, Paragraph, Text} = Typography;
 
 const Story = ({story, setSelectedId}) => {
+  const dispatch = useDispatch();
+
   const [expand, setExpand] = useState(true);
 
   return (
@@ -35,7 +39,7 @@ const Story = ({story, setSelectedId}) => {
         </Tooltip>,
         /* Put your delete action here */
         <Tooltip placement={'top'} title={'Delete'} color={'red'}>
-          <DeleteTwoTone twoToneColor={'red'} onClick={() => {  }}/>
+          <DeleteTwoTone twoToneColor={'red'} onClick={() => { dispatch(deleteStory(story._id)) }}/>
         </Tooltip>
       ]}
     >

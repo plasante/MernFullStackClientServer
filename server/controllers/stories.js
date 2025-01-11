@@ -26,7 +26,7 @@ const createStory = async (req, res) => {
 const updateStory = async (req, res) => {
   const _id = req.params.id;
   const story = req.body;
-console.log('id = ', _id)
+
   if (!mongoose.Types.ObjectId.isValid(_id)) {
     return res.status(404).send("This id does not exist!");
   }
@@ -36,4 +36,18 @@ console.log('id = ', _id)
   res.json(updatedStory);
 }
 
-export { getStories, createStory, updateStory };
+const deleteStory = async (req, res) => {
+  // Get the id from the request params http://localhost:5001/123
+  const id = req.params.id;
+
+  // Check if the id exists in the DB
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).send("The story with id does not exist!");
+  }
+
+  await Story.findByIdAndDelete(id);
+
+  res.json("Story deleted successfully.");
+}
+
+export { getStories, createStory, updateStory, deleteStory };
