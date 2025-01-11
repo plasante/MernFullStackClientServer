@@ -21,6 +21,7 @@ const StoryForm = ({ selectedId, setSelectedId }) => {
       await dispatch(createStory(formValues));
     } else {
       await dispatch(updateStory(selectedId, formValues));
+      setSelectedId(null);
     }
     form.resetFields();
   }
@@ -28,6 +29,8 @@ const StoryForm = ({ selectedId, setSelectedId }) => {
   useEffect(() => {
     if (story) {
       form.setFieldsValue(story)
+    } else {
+      form.resetFields();
     }
   }, [story, form]);
 
@@ -36,6 +39,7 @@ const StoryForm = ({ selectedId, setSelectedId }) => {
       style={styles.formCard}
       title={
         <Title level={4} style={styles.formTitle}>
+          { selectedId ? "Editing a story" : "Share a story" }
         </Title>
       }
     >
