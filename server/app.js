@@ -21,6 +21,7 @@ app.use(cors());
 
 // We reach this route localhost:5001/stories
 app.use('/stories', storyRoutes);
+// We reach this route localhost:5001/user
 app.use('/user', userRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
