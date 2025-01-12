@@ -1,5 +1,9 @@
 import React from 'react';
+import {useNavigate, useNavigation} from "react-router-dom";
+import {useDispatch} from "react-redux";
 import { Form, Input, Button, Card, Layout, Typography} from "antd";
+{/* import actions */}
+import { login, signup } from '../../actions/authentication';
 
 import styles from './styles';
 import {UserOutlined, LockOutlined, MailOutlined} from "@ant-design/icons";
@@ -8,12 +12,22 @@ const {Title} = Typography;
 
 const AuthForm = () => {
   const user = null;
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isLogin, setIsLogin] = React.useState(false);
 
   const [form] = Form.useForm();
 
-  const onSubmit = (e) => {
-
+  {/* formValues contains all the form values */}
+  const onSubmit = (formValues) => {
+    if (isLogin) {
+      console.log("Login values: ", formValues);
+      dispatch(login(formValues, navigate));
+    } else {
+      console.log("Register values: ", formValues);
+      dispatch(signup(formValues, navigate));
+    }
   }
 
   const switchMode = () => {
