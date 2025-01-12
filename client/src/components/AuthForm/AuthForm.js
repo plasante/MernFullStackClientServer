@@ -8,6 +8,7 @@ const {Title} = Typography;
 
 const AuthForm = () => {
   const user = null;
+  const [isLogin, setIsLogin] = React.useState(false);
 
   const [form] = Form.useForm();
 
@@ -15,7 +16,9 @@ const AuthForm = () => {
 
   }
 
-  const isLogin = null;
+  const switchMode = () => {
+    setIsLogin(!isLogin);
+  }
 
   return (
     <Layout style={styles.container}>
@@ -44,8 +47,36 @@ const AuthForm = () => {
               </Form.Item>
 
             </>
-          )
-          }
+          )}
+          <Form.Item
+            name="email"
+            rules={[{required: true},{message: 'Valid Email is required'}]}
+          >
+            <Input prefix={<MailOutlined/>} placeholder="email@example.com" />
+          </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{required: true},{message: 'Please input your password'}]}
+          >
+            <Input.Password type={'password'} prefix={<LockOutlined/>} placeholder="password" />
+          </Form.Item>
+          {isLogin || (
+            <Form.Item
+              name="confirmPassword"
+              rules={[{required: true},{message: 'Please repeat your password'}]}
+            >
+              <Input.Password type={'password'} prefix={<LockOutlined/>} placeholder="ConfirmPassword" />
+            </Form.Item>
+          )}
+          <Form.Item>
+            <Button htmlType={'submit'} type={'primary'}>
+              {isLogin ? "Login" : "Register"}
+            </Button>
+            <span style={{ margin: "0px 10px 20px 0px"}}></span>
+            <Button type={'link'} onClick={switchMode}>
+              {isLogin ? "Register" : "Have an account"}
+            </Button>
+          </Form.Item>
         </Form>
       </Card>
     </Layout>
