@@ -3,8 +3,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import storyRoutes from './routes/stories.js';
-import { config } from 'dotenv'; // changed this line
+import userRoutes from './routes/users.js';
 
+
+import { config } from 'dotenv'; // changed this line
 config();
 
 const app = express();
@@ -19,6 +21,7 @@ app.use(cors());
 
 // We reach this route localhost:5001/stories
 app.use('/stories', storyRoutes);
+app.use('/user', userRoutes);
 
 const MONGO_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 5001;
