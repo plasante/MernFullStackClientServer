@@ -50,10 +50,10 @@ const AppBar = () => {
       ) : (
         <div style={styles.userInfo}>
           <Avatar style={styles.avatar} alt={'username'} size={'large'}>
-            {user?.result?.username?.charAt(0).toUpperCase()}
+            {user?.result?.name?.charAt(0).toUpperCase()}
           </Avatar>
           <Title style={styles.title} level={4}>
-            {user?.result?.username}
+            {user?.result?.name}
           </Title>
           <Button onClick={logout} htmlType={'button'}>
             Log Out
