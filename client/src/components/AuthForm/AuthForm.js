@@ -1,17 +1,14 @@
 import React from 'react';
-import {useNavigate, useNavigation} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Form, Input, Button, Card, Layout, Typography} from "antd";
-{/* import actions */}
 import { login, signup } from '../../actions/authentication';
-
 import styles from './styles';
-import {UserOutlined, LockOutlined, MailOutlined} from "@ant-design/icons";
+import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 
-const {Title} = Typography;
+const { Title } = Typography;
 
 const AuthForm = () => {
-  const user = null;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,7 +16,6 @@ const AuthForm = () => {
 
   const [form] = Form.useForm();
 
-  {/* formValues contains all the form values */}
   const onSubmit = (formValues) => {
     if (isLogin) {
       console.log("Login values: ", formValues);
@@ -54,7 +50,7 @@ const AuthForm = () => {
           {isLogin || (
             <>
               <Form.Item
-                name="username"
+                name="name"
                 rules={[{required: true},{message: 'Username is required'}]}
               >
                 <Input prefix={<UserOutlined/>} placeholder="Username" />

@@ -1,13 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from "./styles";
 import Logo from "../../images/Instaverse.png";
 import {Header} from "antd/es/layout/layout";
 import {Avatar, Button, Image, Typography} from "antd";
-import {Link} from "react-router-dom";
+import {Link , useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../../constants/actionTypes";
+
 const {Title} = Typography;
 
 const AppBar = () => {
-  const user = null;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const token = user?.token;
+
+  useEffect(() => {
+
+    if (token) {
+
+    }
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, [location, token]);
+
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+    navigate("/");
+    setUser(null);
+  }
 
   return (
     <Header style={styles.header}>
@@ -27,12 +50,12 @@ const AppBar = () => {
       ) : (
         <div style={styles.userInfo}>
           <Avatar style={styles.avatar} alt={'username'} size={'large'}>
-            U
+            {user?.result?.username?.charAt(0).toUpperCase()}
           </Avatar>
           <Title style={styles.title} level={4}>
-            John Doe
+            {user?.result?.username}
           </Title>
-          <Button htmlType={'button'}>
+          <Button onClick={logout} htmlType={'button'}>
             Log Out
           </Button>
         </div>

@@ -8,7 +8,7 @@ const signup = (formValues, navigate) => async dispatch => {
     const { data } = await api.signup(formValues);
     dispatch({
       type: AUTHENTICATION,
-      payload: data
+      data: data
     });
     navigate('/');
   } catch(error) {
@@ -21,7 +21,7 @@ const login = (formValues, navigate) => async dispatch => {
     const { data } = await api.login(formValues);
     dispatch({
       type: AUTHENTICATION,
-      payload: data
+      data: data
     });
     navigate('/');
   } catch(error) {

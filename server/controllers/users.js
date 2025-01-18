@@ -1,16 +1,16 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import  User  from '../models/user.js';
-import res from "express/lib/response.js";
-import error from "jsonwebtoken/lib/JsonWebTokenError.js";
 import * as process from "node:process";
+import * as console from "node:console";
 
 // localhost:5001/user/login
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const oldUser = await User.findOne({ where: { email } });
+    const oldUser = await User.findOne({ email: email.trim() });
+
     if (!oldUser) {
       return res.status(401).json({message: `User does not exist`});
     }
@@ -28,6 +28,7 @@ export const login = async (req, res) => {
 
 // loginhost:5001/user/signup
 export const signup = async (req, res) => {
+
   const { name, email, password, confirmPassword } = req.body;
 
   try {

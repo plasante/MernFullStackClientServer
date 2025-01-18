@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const url = 'http://localhost:5001/stories';
+const api = axios.create({ baseURL: 'http://localhost:5001' });
 
-export const fetchStories = () => axios.get(url);
-export const createStory = async (story) => axios.post(url, story);
-export const updateStory = async (id, story) => axios.patch(`${url}/${id}`, story);
-export const deleteStory = async (id) => axios.delete(`${url}/${id}`);
-export const likeStory = async (id) => axios.patch(`${url}/${id}/likeStory`);
+export const fetchStories = () => api.get("stories");
+export const createStory = async (story) => api.post("stories", story);
+export const updateStory = async (id, story) => api.patch(`${"stories"}/${id}`, story);
+export const deleteStory = async (id) => api.delete(`${"stories"}/${id}`);
+export const likeStory = async (id) => api.patch(`${"stories"}/${id}/likeStory`);
+
+export const login = async (formValues) => api.post("/user/login", formValues);
+export const signup = async (formValues) => api.post("/user/signup", formValues);

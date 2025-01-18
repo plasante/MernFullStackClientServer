@@ -14,7 +14,6 @@ const app = express();
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use((req, _, next) => {
-  console.log(req.body);  // This should log the raw request body
   next();
 });
 app.use(cors());
