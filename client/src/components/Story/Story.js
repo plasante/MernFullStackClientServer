@@ -28,7 +28,7 @@ const Story = ({story, setSelectedId}) => {
             onClick={() => dispatch(likeStory(story._id))}
           >
             <HeartTwoTone twoToneColor={'magenta'}/>
-            &nbsp;{story.likes}&nbsp;
+            &nbsp;{story.likes.length}&nbsp;
           </Tooltip>
         </div>,
         /* Put your edit action here */

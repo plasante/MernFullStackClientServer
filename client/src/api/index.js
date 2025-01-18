@@ -3,6 +3,7 @@ import axios from "axios";
 const api = axios.create({ baseURL: 'http://localhost:5001' });
 
 // This is going to happen before all the request above
+// We do this because we have to send the token to the backend
 api.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
     const profile = JSON.parse(localStorage.getItem("profile"));

@@ -11,6 +11,7 @@ const getStories = async (req, res) => {
   }
 }
 
+// userId: The backend knows the specific creator of a story
 const createStory = async (req, res) => {
   const body = req.body;
   const newStory = new Story({

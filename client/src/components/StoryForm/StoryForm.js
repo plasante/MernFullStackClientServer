@@ -17,6 +17,7 @@ const StoryForm = ({selectedId, setSelectedId}) => {
 
   const [form] = Form.useForm();
 
+  // We get the username from the localStorage
   const user = JSON.parse(localStorage.getItem("profile"));
   const username = user?.result?.username;
 
