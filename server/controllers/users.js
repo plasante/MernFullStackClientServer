@@ -5,6 +5,7 @@ import res from "express/lib/response.js";
 import error from "jsonwebtoken/lib/JsonWebTokenError.js";
 import * as process from "node:process";
 
+// localhost:5001/user/login
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -25,6 +26,7 @@ export const login = async (req, res) => {
   }
 }
 
+// loginhost:5001/user/signup
 export const signup = async (req, res) => {
   const { name, email, password, confirmPassword } = req.body;
 
