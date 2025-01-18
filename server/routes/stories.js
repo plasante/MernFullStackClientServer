@@ -3,6 +3,7 @@ import { getStories, createStory, updateStory, deleteStory, likeStory } from "..
 const router = Router();
 import authentication from "../middlewares/authentication.js";
 
+// We check if a particular user is authenticated in the middleware before we go to the next action.
 router.get('/', getStories);
 router.post('/', authentication, createStory);
 router.patch('/:id', authentication, updateStory);

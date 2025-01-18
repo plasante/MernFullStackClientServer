@@ -15,8 +15,8 @@ const storySchema = new mongoose.Schema({
   },
   tags: String,
   likes: {
-    type: Number,
-    default: 0
+    type: [String],
+    default: []
   },
   postDate: {
     type: Date,
