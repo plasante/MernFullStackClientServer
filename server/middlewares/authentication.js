@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import req from "express/lib/request.js";
 
 const authentication = async (req, res, next) => {
   try {
@@ -9,7 +8,8 @@ const authentication = async (req, res, next) => {
 
     if (token) {
       // With decodedToken we know which user is logged in
-      const decodedToken = jwt.verify(token, 'JWT_SECRET');
+      const decodedToken = jwt.verify(token, '1234');
+
       // This is how we get the userId from the decodedToken
       req.userId = decodedToken?.id;
     }

@@ -5,6 +5,7 @@ import {Button, Card, Form, Input, Typography} from "antd";
 import FileBase64 from "react-file-base64";
 import {createStory, updateStory} from "../../actions/stories";
 import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 
 const {Title} = Typography;
@@ -16,11 +17,14 @@ const StoryForm = ({selectedId, setSelectedId}) => {
 
   const [form] = Form.useForm();
 
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const username = user?.result?.username;
+
   const onSubmit = async (formValues) => {
     if (selectedId === null) {
-      await dispatch(createStory(formValues));
+      await dispatch(createStory({ ...formValues, username }));
     } else {
-      await dispatch(updateStory(selectedId, formValues));
+      await dispatch(updateStory(selectedId, { ...formValues, username }));
       setSelectedId(null);
     }
     form.resetFields();
@@ -37,6 +41,20 @@ const StoryForm = ({selectedId, setSelectedId}) => {
   const reset = () => {
     form.resetFields();
     setSelectedId(null);
+  }
+
+  if (!user) {
+    return (
+      <Card style={styles.formCard}>
+        <Title level={4}>
+          <span style={styles.formTitle}>
+            Welcome to Instaverse
+          </span><br/>
+          Please <Link to={"/authform"}>login</Link> or {" "}
+          <Link to={"/authform"}>Register</Link> for sharing instant moment or ideas.
+        </Title>
+      </Card>
+    )
   }
 
   return (
@@ -56,9 +74,6 @@ const StoryForm = ({selectedId, setSelectedId}) => {
         size="middle"
         onFinish={onSubmit}
       >
-        <Form.Item label="Username" name="username" rules={[{required: true}]}>
-          <Input allowClear={true}/>
-        </Form.Item>
         <Form.Item label="Caption" name="caption" rules={[{required: true}]}>
           <Input.TextArea allowClear={true} autosize={{minRow: 2, maxRows: 6}}/>
         </Form.Item>
