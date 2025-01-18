@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import styles from "./styles";
 import Logo from "../../images/Instaverse.png";
 import {Header} from "antd/es/layout/layout";
@@ -6,6 +6,7 @@ import {Avatar, Button, Image, Typography} from "antd";
 import {Link , useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../../constants/actionTypes";
+import decode from 'jwt-decode';
 
 const {Title} = Typography;
 
@@ -17,20 +18,25 @@ const AppBar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const token = user?.token;
 
+  const logout = useCallback(() => {
+    dispatch({ type: LOGOUT });
+    navigate("/authform");
+    setUser(null);
+  }, [dispatch, navigate]);
+
   useEffect(() => {
 
     if (token) {
-
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
     }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location, token]);
+  }, [location, token, logout ]);
 
-  const logout = () => {
-    dispatch({ type: LOGOUT });
-    navigate("/");
-    setUser(null);
-  }
+
 
   return (
     <Header style={styles.header}>
